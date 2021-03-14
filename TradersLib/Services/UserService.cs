@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using TradersLib.Classes;
 using TradersLib.Configuration;
+using TradersLib.Models;
 
 namespace TradersLib.Services
 {
@@ -31,6 +31,15 @@ namespace TradersLib.Services
 
             var reg = await _http.Post<UserRegistration>($"users/{username}/token", registrationRequest, null);
             return reg;
+        }
+
+        /// <summary>
+        /// Gets the user info off of the loaded userSettings.json file.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<User> GetUserInfo()
+        {
+            return (await _http.Get<UserResponse>($"users/{_config.Username}", _config.Token)).User;
         }
     }
 }

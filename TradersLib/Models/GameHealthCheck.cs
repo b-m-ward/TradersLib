@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TradersLib.Classes
+namespace TradersLib.Models
 {
     public class GameHealthCheck : BaseClass
     {

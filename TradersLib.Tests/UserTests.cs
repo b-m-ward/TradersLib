@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TradersLib.Models;
 using TradersLib.Services;
 
 namespace TradersLib.Tests
@@ -29,12 +30,20 @@ namespace TradersLib.Tests
         [Ignore]
         public async Task RegisterUserAccount()
         {
-            string userName = "lockhead1432";
+            string userName = _config.Username;
 
 
             var userReg = await _user.RegisterUsername(userName);
 
             Assert.IsFalse(string.IsNullOrEmpty(userReg.Token));
+        }
+
+        [TestMethod]
+        public async Task GetUserInfo()
+        {
+            User u = await _user.GetUserInfo();
+
+            Assert.IsTrue(u.Username != null);
         }
 
     }

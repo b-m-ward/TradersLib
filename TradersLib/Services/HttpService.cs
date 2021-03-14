@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using TradersLib.Classes;
 using TradersLib.Configuration;
+using TradersLib.Models;
 
 namespace TradersLib.Services
 {
@@ -18,11 +18,12 @@ namespace TradersLib.Services
         }
 
 
-        public async Task<T> Get<T>(string url) where T: BaseClass
+        public async Task<T> Get<T>(string url, string token = null) where T: BaseClass
         {
             try
             {
                 HttpClient client = new HttpClient();
+                if(!string.IsNullOrEmpty(token)) client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                 HttpResponseMessage respo = await client.GetAsync(_config.UrlRoot + url);
                 respo.EnsureSuccessStatusCode();
 
