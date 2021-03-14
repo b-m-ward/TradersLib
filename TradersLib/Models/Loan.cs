@@ -14,4 +14,9 @@ namespace TradersLib.Models
         public string Id { get; set; }
         public DateTime Due { get; set; }
     }
+
+    public class LoanResponse : BaseClass
+    {
+        public Loan[] Loans { get; set; }
+    }
 }

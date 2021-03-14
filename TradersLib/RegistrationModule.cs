@@ -21,6 +21,7 @@ namespace TradersLib
             builder.RegisterType<GameService>().AsSelf();
             builder.RegisterType<HttpService>().AsSelf();
             builder.RegisterType<UserService>().AsSelf();
+            builder.RegisterType<LoanService>().AsSelf();
 
             container = builder.Build();
         }
